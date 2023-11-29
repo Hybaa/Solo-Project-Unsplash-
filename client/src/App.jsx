@@ -61,7 +61,7 @@ const handle = ()=>{
         <div className="row">
           <Leftsidebar />
           <Maincontent handle={handle} posts={posts} users={users}/>
-          <Rightsidebar />
+          <Rightsidebar handle={handle} />
         </div>
       </div>
     </>
