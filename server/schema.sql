@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `unsplash`.`posts` (
   `descreption` VARCHAR(85) NOT NULL,
   `hashtags` VARCHAR(95) NOT NULL,
   `map` VARCHAR(85) NOT NULL,
-  `likes` INT NOT NULL,
+  `likes` INT NOT NULL DEFAULT 0,
   `date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id_post`),
@@ -83,8 +83,19 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+ALTER TABLE `unsplash`.`collection` 
+DROP FOREIGN KEY `fk_users_has_posts_posts1`;
+ALTER TABLE `unsplash`.`collection` 
+ADD CONSTRAINT `fk_users_has_posts_posts1`
+  FOREIGN KEY (`posts_id`)
+  REFERENCES `unsplash`.`posts` (`id_post`)
+  ON DELETE CASCADE;
+
+
 -- Inserting a user into the users table
-INSERT INTO unsplash.users (userName, userEmail, collectionName) VALUES ('hyba', 'hyba@gmaim.com', 'hyba');
+INSERT INTO unsplash.users (userName, userEmail, collectionName) VALUES ('Hyba', 'hyba@gmaim.com', 'hyba');
+
+INSERT INTO unsplash.users (userName, userEmail, collectionName) VALUES ('ahmed', 'Hadeda@gmaim.com', 'ahmed');
 
 INSERT INTO unsplash.users (userName, userEmail, collectionName) VALUES ('Michael', 'michael_photographer@yahoo.com', 'MichaelsPortfolio');
 

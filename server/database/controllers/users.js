@@ -20,5 +20,11 @@ const addUser =(req, res)=>{
     });
 
 }
-
-module.exports = { getAllUsers , addUser }
+const getOneUser = (req, res) =>{
+    var id = req.params.iduser
+  users.getOne(id,function(err,result){
+    if(err) res.status(501).send(err)
+    else res.json(result);
+  })
+}
+module.exports = { getAllUsers , addUser , getOneUser}

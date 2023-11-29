@@ -13,8 +13,18 @@ const add= (obj,callback)=>{
   conn.query(sql,[obj.userName,obj.userEmail,obj.collectionName],function (error, results) {
     callback(error, results)
   })
-  }
-module.exports = { getAll , add }
+}
+//a function that retrieves one user record based on the provided id.
+const getOne = function(id,callback) { 
+  const sql = "SELECT * FROM `users` WHERE id_users =?" 
+  conn.query(sql,[id], function (error, results) {
+    callback(error, results);
+  });
+}
+
+//SELECT COL NAME AND ID POST  WHERE ID USER = 1 
+
+module.exports = { getAll , add , getOne}
 
 // {
 //   "userName" : "Haithem",
